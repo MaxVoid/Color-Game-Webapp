@@ -21,9 +21,9 @@ for(var i = 0; i < squares.length; i++) {
     // add click listeners to squares
     squares[i].addEventListener("click", function() {
         console.log(`User clicked square ${squares[i]}`);
-        // checks if the square was already clicked
+        // checks if the square was already clicked by comparing the background color to the body background color
         if(this.style.backgroundColor === "#202020") {
-            
+        
         } else {
             // grab color of clicked square
             var clickedColor = this.style.backgroundColor;
@@ -43,8 +43,8 @@ for(var i = 0; i < squares.length; i++) {
 function changeColors(color) {
     for(var i = 0; i < squares.length; i++) {
         squares[i].style.backgroundColor = color;
-    }
-}
+    };
+};
 
 // function that picks a random number
 function pickColor(){
@@ -56,5 +56,5 @@ function randomizeColors(num) {
     // make an array
     // add num random colors to array
     // return array
-    return randomColors
-}
+    return randomColors;
+};
