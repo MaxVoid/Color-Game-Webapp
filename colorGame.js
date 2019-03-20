@@ -56,5 +56,7 @@ function randomizeColors(num) {
     // make an array
     // add num random colors to array
     // return array
-    return randomColors;
-};
+    return randomColors
+}
+
+// I got it to commit and push, this is a second attempt.
