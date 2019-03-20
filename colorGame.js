@@ -7,6 +7,7 @@ var colors = randomizeColors(6);
 var squares = document.querySelectorAll(".square");
 var colorDisplay = document.getElementById("colorDisplay");
 var alert = document.querySelector("#alert");
+var titleDisplay = document.querySelector("#titleDisplay");
 
 // pickedColor: this variable is the color that is chosen as the correct color
 var correctColor = pickColor();
@@ -17,10 +18,8 @@ colorDisplay.textContent = correctColor;
 for(var i = 0; i < squares.length; i++) {
     // Add colors to squares
     squares[i].style.backgroundColor = colors[i];
-
     // add click listeners to squares
     squares[i].addEventListener("click", function() {
-        console.log(`User clicked square ${squares[i]}`);
         // checks if the square was already clicked by comparing the background color to the body background color
         if(this.style.backgroundColor === "#202020") {
         
@@ -43,6 +42,7 @@ for(var i = 0; i < squares.length; i++) {
 function changeColors(color) {
     for(var i = 0; i < squares.length; i++) {
         squares[i].style.backgroundColor = color;
+        titleDisplay.style.backgroundColor = color;
     };
 };
 
@@ -54,9 +54,24 @@ function pickColor(){
 
 function randomizeColors(num) {
     // make an array
+    var arr = [];
     // add num random colors to array
+    for (var i = 0; i < num; i++) {
+    // get random color and push into arr variable
+        arr.push(randomColor());
+    }
     // return array
-    return randomColors
-}
+    return arr;
+};
 
-// I got it to commit and push, this is a second attempt.
+// function that returns a random rgb string
+function randomColor(){
+    // pick a red from 0 to 255
+    var red = Math.floor(Math.random() * 256);
+    // pick a green from 0 to 255
+    var green = Math.floor(Math.random() * 256);
+    // pick a blue from 0 to 255
+    var blue = Math.floor(Math.random() * 256);
+    // combines the RGB variables into a string
+    return `rgb(${red}, ${green}, ${blue})`;
+};
