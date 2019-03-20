@@ -58,3 +58,5 @@ function randomizeColors(num) {
     // return array
     return randomColors
 }
+
+// I got Sourcetree on my PC, connected it to GitHub, and then got my private project cloned; if this commits and pushes to the website, then this is a success!
