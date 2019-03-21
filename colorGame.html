@@ -28,7 +28,7 @@
             <button id="hardBtn" class="selected">HARD</button>
         </div>
     </div>
-
+    
     <!-- Color Choice squares -->
     <div id="container">
         <div class="square"></div>
@@ -38,6 +38,28 @@
         <div class="square"></div>
         <div class="square"></div>
     </div>
+    
+    <!-- How to Play button -->
+    <div id="htpContainer">
+        <button id="howToPlay">HOW TO PLAY</button>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="htpModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            
+            <span id="close">&times;</span>
+
+            <p>
+                RGB stands for Red Green Blue. 
+                <br><br>  
+                The number value of the header (X, X, X) is the winning color value; your goal is to select the swatch below that you think has the matching value. If you are unsure of how the RGB color model works, click <a href="https://en.wikipedia.org/wiki/RGB_color_model">here</a> to get a wiki page that explains how RGB works.
+            </p>
+        </div>
+      
+      </div>
 
     <!-- JavaScript link -->
     <script src="colorGame.js"></script>
