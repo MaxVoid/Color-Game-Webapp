@@ -6,13 +6,16 @@ var colors = randomizeColors(mode);
 
 // Variables that select DOM objects in HTML
 var squares = document.querySelectorAll(".square");
-var colorDisplay = document.getElementById("colorDisplay");
+var colorDisplay = document.querySelector("#colorDisplay");
 var alert = document.querySelector("#alert");
 var titleDisplay = document.querySelector("#titleDisplay");
 var reset = document.querySelector("#resetBtn");
 var easy = document.querySelector("#easyBtn");
 var hard = document.querySelector("#hardBtn");
 var howToPlay = document.querySelector("#howToPlay");
+var modal = document.querySelector("#htpModal");
+var close = document.querySelector("#close");
+
 
 // pickedColor: this variable is the color that is chosen as the correct color
 var correctColor = pickColor();
@@ -34,7 +37,8 @@ for(var i = 0; i < squares.length; i++) {
             var clickedColor = this.style.backgroundColor;
             // compare color to correct color
             if(clickedColor !== correctColor) {
-                this.style.backgroundColor = "#232323";
+                this.style.backgroundColor = ("#232323");
+                this.style.border = ("4px solid #232323");
                 alert.textContent = ("TRY AGAIN");
             } else {
                 alert.textContent = ("CORRECT!");
@@ -44,11 +48,6 @@ for(var i = 0; i < squares.length; i++) {
         };
     });
 };
-
-// how to play functionality
-howToPlay.addEventListener("click", function(){
-    "RGB stands for Red Green Blue. The number value of the header (X, X, X) is the winning color value; your goal is to select the swatch below that you think has the matching value. If you are unsure of how the RGB color model works, click here " + "https://en.wikipedia.org/wiki/RGB_color_model"
-});
 
 // reset button functionality
 reset.addEventListener("click", function(){
@@ -81,8 +80,8 @@ easy.addEventListener("click", function(){
         titleDisplay.style.backgroundColor = ("steelblue");
         reset.textContent = ("NEW COLORS");
         alert.textContent = ("");
-        for(var i = 3; i <= 6; i++) {
-            squares[i].style.display = "none";
+        for(var i = 3; i < 6; i++) {
+            squares[i].style.display = ("none");
         };
     };
 });
@@ -105,16 +104,35 @@ hard.addEventListener("click", function(){
         titleDisplay.style.backgroundColor = ("steelblue");
         reset.textContent = ("NEW COLORS");
         alert.textContent = ("");
-        for(var i = 3; i <= 6; i++) {
-            squares[i].style.display = "block";
+        for(var i = 3; i < 6; i++) {
+            squares[i].style.display = ("block");
         };
     };
 });
+
+// modal functionality
+// When the user clicks on the button, open the modal 
+howToPlay.onclick = function() {
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  close.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 
 // function to change all the squares and titleDisplay to the correctColor when the correct square is clicked
 function changeColors(color) {
     for(var i = 0; i < squares.length; i++) {
         squares[i].style.backgroundColor = color;
+        squares[i].style.border = ("4px solid white");
         titleDisplay.style.backgroundColor = color;
     };
 };
@@ -153,10 +171,9 @@ function randomColor(){
 function colorization() {
     for(var i = 0; i < squares.length; i++) {
         squares[i].style.backgroundColor = colors[i];
+        squares[i].style.border = ("4px solid white");
     };
 };
-
-
 
 
 // look into making a modal for How To Play button! https://www.w3schools.com/howto/howto_css_modals.asp
