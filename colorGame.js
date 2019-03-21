@@ -12,6 +12,7 @@ var titleDisplay = document.querySelector("#titleDisplay");
 var reset = document.querySelector("#resetBtn");
 var easy = document.querySelector("#easyBtn");
 var hard = document.querySelector("#hardBtn");
+var howToPlay = document.querySelector("#howToPlay");
 
 // pickedColor: this variable is the color that is chosen as the correct color
 var correctColor = pickColor();
@@ -43,6 +44,11 @@ for(var i = 0; i < squares.length; i++) {
         };
     });
 };
+
+// how to play functionality
+howToPlay.addEventListener("click", function(){
+    "RGB stands for Red Green Blue. The number value of the header (X, X, X) is the winning color value; your goal is to select the swatch below that you think has the matching value. If you are unsure of how the RGB color model works, click here " + "https://en.wikipedia.org/wiki/RGB_color_model"
+});
 
 // reset button functionality
 reset.addEventListener("click", function(){
@@ -149,3 +155,8 @@ function colorization() {
         squares[i].style.backgroundColor = colors[i];
     };
 };
+
+
+
+
+// look into making a modal for How To Play button! https://www.w3schools.com/howto/howto_css_modals.asp
