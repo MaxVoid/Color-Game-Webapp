@@ -49,8 +49,8 @@ for(var i = 0; i < squares.length; i++) {
     });
 };
 
-// reset button functionality
-reset.addEventListener("click", function(){
+// reset function
+function resetEvent() {
     // generates new colors, adds them to squares, and chooses a correctColor
     colors = randomizeColors(mode);
     correctColor = pickColor();
@@ -60,6 +60,11 @@ reset.addEventListener("click", function(){
     titleDisplay.style.backgroundColor = ("steelblue");
     reset.textContent = ("NEW COLORS");
     alert.textContent = ("");
+};
+
+// reset button functionality
+reset.addEventListener("click", function(){
+    resetEvent();
 });
 
 // easy mode button functionality
@@ -68,18 +73,8 @@ easy.addEventListener("click", function(){
         // if mode is already easy then nothing happens, else it performs the switch to easy
     } else {
         mode = 3;
-        // switches highlighted button
-        easy.classList.add("selected");
-        hard.classList.remove("selected");
-        // generates 3 new colors, adds them to first 3 squares, hides the  last 3 squares, and chooses a correctColor
-        colors = randomizeColors(3);
-        correctColor = pickColor();
-        colorization();
-        // resets displays for new game
-        colorDisplay.textContent = correctColor;
-        titleDisplay.style.backgroundColor = ("steelblue");
-        reset.textContent = ("NEW COLORS");
-        alert.textContent = ("");
+        modeSwitch();
+        resetEvent();
         for(var i = 3; i < 6; i++) {
             squares[i].style.display = ("none");
         };
@@ -92,18 +87,8 @@ hard.addEventListener("click", function(){
         // if mode is already hard then nothing happens, else it performs the switch to hard
     } else {
         mode = 6;
-        // switches highlighted button
-        hard.classList.add("selected");
-        easy.classList.remove("selected");
-        // generates new colors, adds them to squares, shows last 3 squares if  they are hidden, and chooses a correctColor
-        colors = randomizeColors(6);
-        correctColor = pickColor();
-        colorization();
-        // resets displays for new game
-        colorDisplay.textContent = correctColor;
-        titleDisplay.style.backgroundColor = ("steelblue");
-        reset.textContent = ("NEW COLORS");
-        alert.textContent = ("");
+        modeSwitch();
+        resetEvent();
         for(var i = 3; i < 6; i++) {
             squares[i].style.display = ("block");
         };
@@ -114,19 +99,28 @@ hard.addEventListener("click", function(){
 // When the user clicks on the button, open the modal 
 howToPlay.onclick = function() {
     modal.style.display = "block";
-  }
+};
   
-  // When the user clicks on <span> (x), close the modal
-  close.onclick = function() {
+// When the user clicks on <span> (x), close the modal
+close.onclick = function() {
     modal.style.display = "none";
-  }
+};
   
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
-    }
-  }
+    };
+};
+
+// function to switch the selected mode button
+function modeSwitch() {
+        mode === 3 
+        ? easy.classList.add("selected") 
+        & hard.classList.remove("selected")
+        : hard.classList.add("selected") 
+        & easy.classList.remove("selected");
+};
 
 // function to change all the squares and titleDisplay to the correctColor when the correct square is clicked
 function changeColors(color) {
@@ -146,7 +140,7 @@ function pickColor(){
 function randomizeColors(num) {
     // make an array
     var arr = [];
-    // add num random colors to array
+    // adds the argument's number of random colors to the array
     for (var i = 0; i < num; i++) {
     // get random color and push into arr variable
         arr.push(randomColor());
